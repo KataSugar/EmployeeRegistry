@@ -68,3 +68,29 @@ resource "aws_iam_role" "node" {
    role       = aws_iam_role.node.name
    policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
  }
+
+
+#Addons
+## Enables Kubernetes Pods to communicate over AWS VPC network
+resource "aws_eks_addon" "vpc_cni" {
+  cluster_name = var.cluster_name
+  addon_name   = "vpc-cni"   
+}
+
+##Provides DNS resolution for services and pods within the cluster
+resource "aws_eks_addon" "coredns" {
+  cluster_name = var.cluster_name
+  addon_name   = "coredns"
+}
+
+##Manages network routing for Kubernetes services, enabling load balancing and service discovery
+resource "aws_eks_addon" "kube_proxy" {
+  cluster_name = aws_eks_cluster.this.name
+  addon_name   = "kube-proxy"
+}
+
+# Give the ability to create aws load balancers as k8s services
+resource "aws_eks_addon" "aws_load_balancer_controller" {
+  cluster_name = aws_eks_cluster.this.name
+  addon_name   = "aws-load-balancer-controller"
+}
