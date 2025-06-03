@@ -64,6 +64,8 @@ resource "terraform_data" "configure_kubectl" {
   provisioner "local-exec" {
     command = <<EOT
       aws eks update-kubeconfig --region ${var.aws_region} --name ${aws_eks_cluster.eks.name}
+      kubectl cluster-info
+      helm version
     EOT
   }
 }
