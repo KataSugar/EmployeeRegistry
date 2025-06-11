@@ -85,12 +85,12 @@ resource "aws_eks_addon" "coredns" {
 
 ##Manages network routing for Kubernetes services, enabling load balancing and service discovery
 resource "aws_eks_addon" "kube_proxy" {
-  cluster_name = aws_eks_cluster.this.name
+  cluster_name = aws_eks_cluster.eks.name
   addon_name   = "kube-proxy"
 }
 
 # Give the ability to create aws load balancers as k8s services
 resource "aws_eks_addon" "aws_load_balancer_controller" {
-  cluster_name = aws_eks_cluster.this.name
+  cluster_name = aws_eks_cluster.eks.name
   addon_name   = "aws-load-balancer-controller"
 }

@@ -97,7 +97,7 @@ resource "aws_security_group" "eks_cluster_sg" {
 }
 
 resource "aws_security_group" "eks_nodes" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = var.vpc_id
 
   ingress {
     from_port   = 0

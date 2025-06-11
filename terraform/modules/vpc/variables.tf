@@ -12,13 +12,13 @@ variable "vpc_cidr" {
 }
 
 variable "subnet_a_cidr" {
-  description = "CIDR block for subnet A"
+  description = "CIDR block for public subnet"
   type        = string
   default = "10.0.1.0/24"
 }
 
 variable "subnet_b_cidr" {
-  description = "CIDR block for subnet B"
+  description = "CIDR block for private subnet"
   type        = string
   default = "10.0.2.0/24"
 }
@@ -26,13 +26,13 @@ variable "subnet_b_cidr" {
 variable "az_a" {
   description = "Availability Zone A"
   type        = string
-    default     = "eu-west-3a"
+  default     = "eu-west-3a"
 }
 
 variable "az_b" {
   description = "Availability Zone B"
   type        = string
-    default     = "eu-west-3b"
+  default     = "eu-west-3b"
 }
 
 variable "cluster_name" {
