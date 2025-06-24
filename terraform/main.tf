@@ -1,6 +1,7 @@
 module "vpc" {
   source = "./modules/vpc"
-  aws_region = var.aws_region
+  aws_region     = var.aws_region
+  cluster_name   = var.cluster_name
   
 }
 
@@ -29,6 +30,7 @@ module "docdb" {
   vpc_id        = module.vpc.vpc_id
   subnet_a_id   = module.vpc.subnet_a_id
   subnet_b_id   = module.vpc.subnet_b_id
-  vpc_cidr      = module.vpc.vpc_cidr
   eks_node_role_name = module.eks.node_role_name
+  master_username         = var.master_username
+  allowed_security_groups = [module.eks.node_security_group_id]
 }

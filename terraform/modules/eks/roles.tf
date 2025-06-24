@@ -75,6 +75,7 @@ resource "aws_iam_role" "node" {
 resource "aws_eks_addon" "vpc_cni" {
   cluster_name = var.cluster_name
   addon_name   = "vpc-cni"   
+  depends_on = [ aws_eks_cluster.eks]
 }
 
 ##Provides DNS resolution for services and pods within the cluster

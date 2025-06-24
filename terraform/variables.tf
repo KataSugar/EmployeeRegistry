@@ -22,6 +22,13 @@ variable "configure_kubectl" {
   default     = true
 }
 
+variable "master_username" {
+  description = "Master username for DocumentDB"
+  type        = string
+  sensitive   = true
+  default     = "docdbadmin"
+}
+
 
 
 
